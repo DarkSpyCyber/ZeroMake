@@ -1,0 +1,26 @@
+-- lua text parser engine 
+-- -- comment
+-- keywords:
+--[[
+      $SRC: all of source code which included in "source_code( ... )"
+      $TARGET: the file which in "target ( ... )"
+      $OBJ: object file which included "source_object( ... )"
+  ]]--
+
+
+target("test.exe"); 
+
+compiler("c:\\develop\\dm\\bin\\dmc.exe");
+-- linker("c:\\develop\\dm\\bin\\dmc.exe"); if linker and compiler are same you dont have to write the linker down
+
+source_code("c.cpp", "fun.cpp", "x.cpp"); -- src
+source_object("c.obj", "fun.obj", "x.obj"); -- obj, need to same as src count
+
+compile_param( "$SRC", "-c",
+                      "-Ic:/develop/dm/stlport/stlport", 
+	              "c:/develop/dm/lib/stlp45dm_static.lib"); -- compiler options
+
+link_param("$TARGET", "$OBJ"); -- link option
+make(); -- make
+
+--shell_command("dir/w", "dir/s"); another work
