@@ -1,0 +1,2 @@
+# ZeroMake
+the easy makefile
